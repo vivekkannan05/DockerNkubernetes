@@ -1,0 +1,12 @@
+#Docker - compose version
+version: '3'
+#Here is what we want you to do
+# - in yml is an array representation
+services: 
+  redis-server:
+    image: 'redis'
+  node-app:
+    restart: on-failure
+    build: .
+    ports: 
+      - "4001:8081"
