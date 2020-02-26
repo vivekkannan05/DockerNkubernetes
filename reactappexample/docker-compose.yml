@@ -1,0 +1,25 @@
+#Docker-Compose version
+version: '3'
+#Here is what we want you to do
+# - in yml is an array representation
+services: 
+  webapp:
+    build:
+      #This would mention the location where to look for the file . is current directory
+      context: .
+      dockerfile: DockerFile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - /app/node_modules
+      - .:/app
+  
+  tests:
+    build:
+      context: .
+      dockerfile: DockerFile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    #Override a command inside Docker File
+    command: ["npm","run","test"] 
